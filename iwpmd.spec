@@ -5,7 +5,7 @@ Name:		iwpmd
 Version:	1.0.6
 Release:	1
 License:	BSD or GPL v2
-Group:		Libraries
+Group:		Networking/Daemons
 Source0:	https://www.openfabrics.org/downloads/libiwpm/%{name}-%{version}.tar.gz
 # Source0-md5:	dc4450e99dcbf7aa9774286d176a59c3
 URL:		https://www.openfabrics.org/
@@ -23,12 +23,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %undefine	__cxx
 
 %description
-libiwpm provides a userspace service for iWarp drivers to claim TCP
+iwpmd provides a userspace service for iWarp drivers to claim TCP
 ports through the standard socket interface.
 
 %description -l pl.UTF-8
-libiwpm dostarcza usługę przestrzeni użytkownika dla sterowników
-iWarp, pozwalającą im zajmować porty TCP poprzez standardowy interfejs
+iwpmd dostarcza usługę przestrzeni użytkownika dla sterowników iWarp,
+pozwalającą im zajmować porty TCP poprzez standardowy interfejs
 gniazdowy.
 
 %prep

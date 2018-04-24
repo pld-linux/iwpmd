@@ -1,19 +1,23 @@
 # TODO: PLDify init script
 Summary:	iWarp Port Mapper userspace daemon
 Summary(pl.UTF-8):	Demon przestrzeni użytkownika usługi iWarp Port Mapper
-Name:		libiwpm
-Version:	1.0.5
+Name:		iwpmd
+Version:	1.0.6
 Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
 Source0:	https://www.openfabrics.org/downloads/libiwpm/%{name}-%{version}.tar.gz
-# Source0-md5:	946a177c5cc912981ff08d7bca15977a
+# Source0-md5:	dc4450e99dcbf7aa9774286d176a59c3
 URL:		https://www.openfabrics.org/
 BuildRequires:	libnl-devel >= 3.2
 BuildRequires:	rpmbuild(macros) >= 1.647
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 Requires:	systemd-units >= 0.38
+# misleading package name before 1.0.6
+Obsoletes:	libiwpm < 1.0.6
+# internal API headers, never useful without sources
+Obsoletes:	libiwpm-devel < 1.0.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -26,18 +30,6 @@ ports through the standard socket interface.
 libiwpm dostarcza usługę przestrzeni użytkownika dla sterowników
 iWarp, pozwalającą im zajmować porty TCP poprzez standardowy interfejs
 gniazdowy.
-
-%package devel
-Summary:	Header files for iWarp Port Mapper
-Summary(pl.UTF-8):	Pliki nagłówkowe usługi iWarp Port Mapper
-Group:		Development/Libraries
-Requires:	libnl-devel >= 3.2
-
-%description devel
-Header files for iWarp Port Mapper.
-
-%description devel -l pl.UTF-8
-Pliki nagłówkowe usługi iWarp Port Mapper.
 
 %prep
 %setup -q
@@ -79,8 +71,3 @@ fi
 %attr(755,root,root) %{_bindir}/iwpmd
 %attr(754,root,root) /etc/rc.d/init.d/iwpmd
 %{systemdunitdir}/iwpmd.service
-
-%files devel
-%defattr(644,root,root,755)
-%{_includedir}/rdma/iwarp_pm.h
-%{_includedir}/rdma/iwpm_netlink.h

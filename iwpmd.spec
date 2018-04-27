@@ -1,9 +1,10 @@
+# NOTE: for versions >= 17 see rdma-core.spec
 # TODO: PLDify init script
 Summary:	iWarp Port Mapper userspace daemon
 Summary(pl.UTF-8):	Demon przestrzeni użytkownika usługi iWarp Port Mapper
 Name:		iwpmd
 Version:	1.0.6
-Release:	1
+Release:	1.1
 License:	BSD or GPL v2
 Group:		Networking/Daemons
 Source0:	https://www.openfabrics.org/downloads/libiwpm/%{name}-%{version}.tar.gz
